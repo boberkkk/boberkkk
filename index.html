@@ -1,3 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <h1>HALLO!</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>CPS test</title>
+    <style>
+        body {
+          background-color: #2A2A2A;
+          text-align: center;
+          font-family: "Comic Sans MS", "Comic Sans", cursive;
+          margin-top: 25px;
+          color: #00f600;
+        }
+      .click-window {
+        width: 500px;
+        height: 300px;
+        background-color: #00f600;
+        border: 5px solid #1E5972;
+        margin: 20px auto;
+      }
+      </style> 
+</head>
+  <body>
+    <h1>KPS TEST</h1>
+    <p>to know your CPS divide clicks by 10</p>
+    <div id="timer" style="font-size: 40px; font-weight: bold; margin-top: 20px;">TIME: 10</div>
+    <div class="click-window"></div>
+    <h1 id="score" style="font-size: 60px; margin: 10px 0;">0</h1>
+    <script>
+      const box = document.querySelector('.click-window');
+      const scoreText = document.getElementById('score');
+      const timerText = document.getElementById('timer');
+
+      let clicks = 0;
+      let time = 10;
+      let active = true;
+      let timer;
+
+      box.addEventListener('click', () => {
+        if (!active) return;
+
+        if (clicks === 0) {
+          timer = setInterval(() => {
+            time--;
+            timerText.textContent = `time: ${time}`;
+
+          if (time <= 0) {
+            clearInterval(timer);
+            active = false;
+            timerText.textContent = "congratulations"
+          }
+          }, 1000);
+        }
